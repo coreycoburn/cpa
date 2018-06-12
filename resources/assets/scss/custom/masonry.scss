@@ -1,0 +1,9 @@
+.masonry {
+    @apply .bg-black .bg-cover .bg-center .m-1;
+    height: 300px;
+    background-blend-mode: overlay;
+
+    &:hover {
+        background-blend-mode: normal;
+    }
+}
