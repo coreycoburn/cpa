@@ -4,9 +4,24 @@ return [
     'name' => 'C.P.A. Valet',
     'legal_name' => 'Certified Parking Attendants, LLC.',
     'slogan' => 'The Premier Parking & Shuttle Service of the Bay Area',
+    'address' => [
+        'mailing' => [
+            'address' => '448 Ignacio Blvd. #251',
+            'city' => 'Novato',
+            'state' => 'CA',
+            'zip' => '94949'
+        ],
+        'office' => [
+            'address' => '60 Galli Drive',
+            'city' => 'Novato',
+            'state' => 'CA',
+            'zip' => '94949'
+        ]
+    ],
     'phone' => [
         'main' => '(415) 382-0588',
-        'alt' => '(707) 258-1138'
+        'alt' => '(707) 258-1138',
+        'fax' => '(415) 382-3356'
     ],
     'email' => [
         'main' => 'info@cpavalet.com'

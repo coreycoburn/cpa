@@ -1,4 +1,4 @@
-<div class="bg-black text-white py-6">
+<div class="bg-black text-white py-6 carbonfiber">
     @svg('menu', 'absolute sm:hidden h-6 pin-r mr-4 fill-current text-white')
     <div class="container mx-auto">
         <div class="flex justify-start sm:justify-between ml-32 sm:ml-0">

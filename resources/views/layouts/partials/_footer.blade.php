@@ -1,9 +1,18 @@
-<div class="bg-black py-16 text-grey-lightest">
+<div class="flex justify-end text-right mr-16 mb-4">
+    <a
+        href="#"
+        v-scroll-to="'body'"
+        class="fill-current text-white bg-brand-dark rounded-full w-16 h-16 text-center hover:bg-brand"
+    >
+        @svg('angle-up', 'h-16')
+    </a>
+</div>
+<div class="bg-black py-16 text-grey-lightest carbonfiber">
     <div class="container mx-auto">
         <div class="text-center mb-16">
             <a
                 href="{{ route('quote') }}"
-                class="bg-transparent no-underline uppercase hover:bg-green text-green text-2xl font-semibold hover:text-white py-4 px-8 border border-green hover:border-transparent rounded"
+                class="bg-brand-dark no-underline uppercase hover:bg-brand text-white text-2xl font-semibold hover:text-white py-4 px-8 border border-brand hover:border-transparent rounded"
             >
               Free Quote
             </a>
@@ -59,6 +68,15 @@
                 </li>
             </ul>
         </div>
+        <p class="text-center mb-3">
+            {{ config('company.address.mailing.address') }}
+            {{ config('company.address.mailing.city') }},
+            {{ config('company.address.mailing.state') }}
+            {{ config('company.address.mailing.zip') }}
+        </p>
+        <p class="text-center mb-3">
+            Fax: {{ config('company.phone.fax') }}
+        </p>
         <p class="text-center">
             &copy; {{ date('Y') }} {{ config('company.legal_name') }} All Rights Reserved.
         </p>

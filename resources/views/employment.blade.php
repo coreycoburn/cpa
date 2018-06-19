@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => 'Employment'])
 
 @section('body')
     <p>employment page...</p>

@@ -35,9 +35,4 @@ class MarketingController extends Controller
     {
         return view('employment');
     }
-
-    public function quote()
-    {
-        return view('quote');
-    }
 }

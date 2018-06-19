@@ -13,14 +13,14 @@
         <slide class="bg-cover h-112" style="background-image: url('/img/slider/image01.jpg')">
             <div class="flex flex-col">
                 <div class="flex max-w-lg mt-16 mb-8 mx-auto py-8">
-                    <h3 class="text-4xl uppercase leading-loose text-center text-white">
+                    <h1 class="text-5xl leading-loose text-center text-white font-normal">
                         {{ config('company.slogan') }}!
-                    </h3>
+                    </h1>
                 </div>
                 <div class="flex justify-center">
                     <a
                         href="{{ route('quote') }}"
-                        class="bg-green z-20 no-underline hover:bg-green-dark text-white uppercase tracking-wide text-3xl font-bold py-4 px-8 border border-green-darker rounded"
+                        class="bg-brand-dark z-20 no-underline hover:bg-brand text-white uppercase tracking-wide text-3xl font-bold py-4 px-8 border border-brand-darker rounded"
                     >
                       Free Quote
                     </a>
@@ -187,15 +187,7 @@
                         class="w-full sm:w-1/3 relative masonry"
                         style="background-image: url('{{ $image['url'] }}')"
                     >
-{{--                         @if ($image['caption'])
-                            <p
-                                class="text-white text-sm leading-normal text-center bg-black p-2 m-2 absolute pin-b"
-                                style="background: rgba(0,0,0,0.6)"
-                            >
-                                {{ $image['caption'] }}
-                            </p>
-                        @endif
- --}}                    </a>
+                    </a>
                 @endforeach
             </div>
         @endforeach

@@ -1,6 +1,6 @@
 <div class="hidden sm:flex bg-grey-light pt-6 pb-3 shadow sticky pin-t z-20">
     <nav class="container mx-auto">
-        <ul class="flex list-reset justify-between text-sm md:text-lg xl:text-xl lg:mx-32">
+        <ul class="flex list-reset justify-between text-sm md:text-lg lg:mx-32 font-serif tracking-wide">
             <li>
                 <a
                     href="{{ route('welcome') }}"

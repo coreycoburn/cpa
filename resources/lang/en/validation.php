@@ -124,6 +124,8 @@ return [
     |
     */
 
+    'phone' => 'The :attribute field contains an invalid number.',
+
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
