@@ -13,7 +13,7 @@
             :id="field"
             :name="field"
             type="text"
-            :placeholder="title"
+            :placeholder="this.help ? this.help : this.title"
             @input="updateValue($event.target.value)"
             :value="value"
             @blur="removeError"
@@ -51,6 +51,9 @@ export default {
         },
         required: {
             default: false
+        },
+        help: {
+            type: String
         }
     },
     methods: {

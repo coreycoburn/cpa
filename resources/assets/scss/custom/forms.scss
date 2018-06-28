@@ -1,0 +1,43 @@
+/* Base for label styling */
+[type='checkbox']:not(:checked),
+[type='checkbox']:checked {
+    @apply .appearance-none;
+}
+[type='checkbox']:not(:checked) + label,
+[type='checkbox']:checked + label {
+    @apply .relative .cursor-pointer .pl-8;
+}
+
+/* checkbox aspect */
+[type='checkbox']:not(:checked) + label:before,
+[type='checkbox']:checked + label:before {
+    @apply .absolute .h-6 .w-6 .pin-t .pin-l .border-2 .border-grey-light .bg-white .rounded;
+    content: '';
+}
+/* checked mark aspect */
+[type='checkbox']:not(:checked) + label:after,
+[type='checkbox']:checked + label:after {
+    @apply .absolute .text-brand .text-2xl .pin-t .pin-l .ml-2 .leading-none;
+    content: '✔︎';
+    transition: all 0.2s;
+}
+/* checked mark aspect changes */
+[type='checkbox']:not(:checked) + label:after {
+    @apply .opacity-0;
+    transform: scale(0);
+}
+[type='checkbox']:checked + label:after {
+    @apply .opacity-100;
+    transform: scale(1);
+}
+/* disabled checkbox */
+[type='checkbox']:disabled:not(:checked) + label:before,
+[type='checkbox']:disabled:checked + label:before {
+    @apply .shadow-none .border .border-grey-light .bg-grey-lighter;
+}
+[type='checkbox']:disabled:checked + label:after {
+    @apply .text-grey-lighter;
+}
+[type='checkbox']:disabled + label {
+    @apply .text-grey;
+}

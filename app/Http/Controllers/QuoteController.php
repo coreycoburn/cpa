@@ -16,6 +16,6 @@ class QuoteController extends Controller
     {
         $validated = $request->validated();
 
-        dd($validated);
+        return $validated;
     }
 }

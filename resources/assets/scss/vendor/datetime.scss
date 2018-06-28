@@ -1,0 +1,11 @@
+.datetime-theme .vdatetime-popup__header,
+.datetime-theme .vdatetime-calendar__month__day--selected > span > span,
+.datetime-theme .vdatetime-calendar__month__day--selected:hover > span > span {
+    @apply .bg-brand-dark;
+}
+
+.datetime-theme .vdatetime-year-picker__item--selected,
+.datetime-theme .vdatetime-time-picker__item--selected,
+.datetime-theme .vdatetime-popup__actions__button {
+    @apply .text-blue;
+}

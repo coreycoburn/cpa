@@ -24,6 +24,9 @@
             @endisset
 
             @yield('body')
+
+            <flash-message transition-name="fade"></flash-message>
+
             @include('layouts.partials._footer')
         </div>
     </body>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\AtLeastOneCheckboxRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreClientQuote extends FormRequest
@@ -35,7 +36,11 @@ class StoreClientQuote extends FormRequest
             'contact_address' => 'nullable',
             'contact_city' => 'nullable',
             'contact_state' => 'nullable',
-            'contactzip' => 'nullable'
+            'contactzip' => 'nullable',
+            'services' => [new AtLeastOneCheckboxRule],
+            'event_type' => 'nullable',
+            'location_type' => 'nullable',
+            'location_name' => 'nullable'
         ];
     }
 
