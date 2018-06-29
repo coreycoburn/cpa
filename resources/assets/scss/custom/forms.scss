@@ -5,7 +5,7 @@
 }
 [type='checkbox']:not(:checked) + label,
 [type='checkbox']:checked + label {
-    @apply .relative .cursor-pointer .pl-8;
+    @apply .relative .flex .cursor-pointer .pl-8 .-mt-6;
 }
 
 /* checkbox aspect */

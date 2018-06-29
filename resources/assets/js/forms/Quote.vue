@@ -6,7 +6,10 @@
                     <h2 class="mb-4">{{ formTitle }}</h2>
                 </div>
                 <div class="flex-1 text-right">
-                    Step {{ step }} of {{ finalStep }}
+                    Step
+                        <span class="bg-blue-light rounded-full inline-flex items-center justify-center text-white h-6 w-6">
+                            {{ step }}
+                        </span> of {{ finalStep }}
                 </div>
             </div>
 
@@ -198,62 +201,27 @@
                         v-model="form.location_name"
                     />
                 </div>
-                <div class="w-full mb-4">
-                    <label class="block text-grey-darker text-sm font-bold mb-2">
-                        Event Date
-                        <span class="text-red">*</span>
-                    </label>
-                    <datetime
-                        v-model="form.event_date"
-                        type="date"
-                        input-class="rounded w-full py-2 px-3 text-grey-darker leading-tight"
-                        value-zone="America/Los_Angeles"
-                        auto
-                        :week-start=6
-                        :min-datetime="today"
-                        class="datetime-theme"
-                    />
-                </div>
-                <div class="flex flex-col lg:flex-row mb-4">
-                    <div class="w-full mb-4 lg:w-1/3 lg:mb-0 mr-2">
-                        <label class="block text-grey-darker text-sm font-bold mb-2">
-                            Guest Arrival Time
-                            <span class="text-red">*</span>
-                        </label>
+                <div class="flex mb-4">
+                    <div class="w-1/2 mr-2">
+                        <datetime
+                            v-model="form.event_date"
+                            field="event_date"
+                            type="date"
+                            input-class="rounded w-full py-2 px-3 text-grey-darker leading-tight"
+                            value-zone="America/Los_Angeles"
+                            auto
+                            :week-start=6
+                            :min-datetime="today"
+                            class="datetime-theme"
+                            title="Event Date"
+                            :errors="errors"
+                            :required=true
+                        />
+                    </div>
+                    <div class="w-1/2">
                         <datetime
                             v-model="form.start"
-                            type="time"
-                            input-class="rounded w-full py-2 px-3 text-grey-darker leading-tight"
-                            value-zone="America/Los_Angeles"
-                            :minute-step=15
-                            use12-hour
-                            auto
-                            class="datetime-theme"
-                        />
-                    </div>
-                    <div class="w-full mb-4 lg:w-1/3 lg:mb-0 mr-2">
-                        <label class="block text-grey-darker text-sm font-bold mb-2">
-                            Advertised Start Time
-                            <span class="text-red">*</span>
-                        </label>
-                        <datetime
-                            v-model="form.start_advertised"
-                            type="time"
-                            input-class="rounded w-full py-2 px-3 text-grey-darker leading-tight"
-                            value-zone="America/Los_Angeles"
-                            :minute-step=15
-                            use12-hour
-                            auto
-                            class="datetime-theme"
-                        />
-                    </div>
-                    <div class="w-full mb-4 lg:w-1/3 lg:mb-0">
-                        <label class="block text-grey-darker text-sm font-bold mb-2">
-                            Event End Time
-                            <span class="text-red">*</span>
-                        </label>
-                        <datetime
-                            v-model="form.end"
+                            field="start"
                             type="time"
                             input-class="rounded w-full py-2 px-3 text-grey-darker leading-tight"
                             value-zone="America/Los_Angeles"
@@ -262,6 +230,47 @@
                             auto
                             :format="{ hour: 'numeric', minute: '2-digit' }"
                             class="datetime-theme"
+                            title="Guest Arrival Time"
+                            help="Time your 1st guest will arrive"
+                            :errors="errors"
+                            :required=true
+                        />
+                    </div>
+                </div>
+                <div class="flex mb-4">
+                    <div class="w-1/2 mr-2">
+                        <datetime
+                            v-model="form.start_advertised"
+                            field="start_advertised"
+                            type="time"
+                            input-class="rounded w-full py-2 px-3 text-grey-darker leading-tight"
+                            value-zone="America/Los_Angeles"
+                            :minute-step=15
+                            use12-hour
+                            auto
+                            :format="{ hour: 'numeric', minute: '2-digit' }"
+                            class="datetime-theme"
+                            title="Advertised Start Time"
+                            help="Time advertised on invitation"
+                            :errors="errors"
+                            :required=true
+                        />
+                    </div>
+                    <div class="w-1/2">
+                        <datetime
+                            v-model="form.end"
+                            field="end"
+                            type="time"
+                            input-class="rounded w-full py-2 px-3 text-grey-darker leading-tight"
+                            value-zone="America/Los_Angeles"
+                            :minute-step=15
+                            use12-hour
+                            auto
+                            :format="{ hour: 'numeric', minute: '2-digit' }"
+                            class="datetime-theme"
+                            title="Event End Time"
+                            :errors="errors"
+                            :required=true
                         />
                     </div>
                 </div>
@@ -271,6 +280,8 @@
                             field="guests"
                             title="Guest Count"
                             v-model="form.guests"
+                            :errors="errors"
+                            :required=true
                             help="i.e. 100 or 150-175"
                         />
                     </div>
@@ -279,6 +290,8 @@
                             field="cars"
                             title="Car Count"
                             v-model="form.cars"
+                            :errors="errors"
+                            :required=true
                             help="Your best estimation"
                         />
                     </div>
@@ -456,6 +469,8 @@ export default {
                 Object.assign(this.$data, this.$options.data())
                 this.step = 1
                 VueScrollTo.scrollTo('body', 500, { offset: -52 })
+
+                console.log(response.data)
             } catch (error) {
                 this.errors = error.response.data.errors
 
@@ -552,7 +567,7 @@ export default {
         }
     },
     mounted() {
-        this.googleAutocomplete()
+        //this.googleAutocomplete()
     }
 }
 </script>

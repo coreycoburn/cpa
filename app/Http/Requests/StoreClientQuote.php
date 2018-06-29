@@ -40,7 +40,17 @@ class StoreClientQuote extends FormRequest
             'services' => [new AtLeastOneCheckboxRule],
             'event_type' => 'nullable',
             'location_type' => 'nullable',
-            'location_name' => 'nullable'
+            'location_name' => 'nullable',
+            'event_date' => 'required|date',
+            'start' => 'required',
+            'start_advertised' => 'required',
+            'end' => 'required',
+            'guests' => 'required',
+            'cars' => 'required',
+            'event_address' => 'nullable',
+            'event_city' => 'nullable',
+            'event_start' => 'nullable',
+            'event_zip' => 'nullable'
         ];
     }
 
@@ -57,6 +67,12 @@ class StoreClientQuote extends FormRequest
             'lname.required'  => 'Your last name is required',
             'phone.required'  => 'Your phone is required',
             'email.required'  => 'Your email is required',
+            'event_date.required'  => 'The event date is required',
+            'start.required'  => 'The guest arrival time is required',
+            'start_advertised.required'  => 'The advertised start time is required',
+            'end.required'  => 'The event end time is required',
+            'guests.required'  => 'The guest count is required',
+            'cars.required'  => 'The car count is required'
         ];
     }
 }

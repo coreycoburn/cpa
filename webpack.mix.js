@@ -9,8 +9,17 @@ mix.js('resources/assets/js/app.js', 'public/js')
         processCssUrls: false,
         postCss: [tailwindcss('./tailwind.js')]
     })
-    .purgeCss()
+    .browserSync({ proxy: '127.0.0.1:8000', snippetOptions: {
+      rule: {
+        match: /<\/head>/i,
+        fn: function (snippet, match) {
+          return snippet + match;
+        }
+      }
+    }, })
 
 if (mix.inProduction()) {
-    mix.version()
+    mix
+        .version()
+        .purgeCss()
 }
