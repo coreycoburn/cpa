@@ -5,29 +5,15 @@
             :for="field"
         >
             {{ title }}
-            <span class="text-red" v-show="required">*</span>
         </label>
-        <input
-            class="appearance-none rounded w-full py-2 px-3 text-grey-darker leading-tight"
-            :class="{ 'border border-red': errors[field] }"
+        <textarea
+            class="appearance-none rounded w-full py-2 px-3 text-grey-darker leading-tight h-32"
             :id="field"
             :name="field"
             type="text"
             :placeholder="this.help ? this.help : this.title"
             @input="updateValue($event.target.value)"
-            :value="value"
-            @blur="removeError"
-            @keydown.enter.prevent=""
-        >
-        <transition name="fade">
-            <span
-                class="text-sm text-red-dark mt-2 block"
-                role="alert"
-                v-if="errors[field]"
-            >
-                {{ errors[field][0] }}
-            </span>
-        </transition>
+        >{{ value }}</textarea>
     </div>
 </template>
 
@@ -47,12 +33,6 @@ export default {
         value: {
             required: true
         },
-        errors: {
-            default: Array
-        },
-        required: {
-            default: false
-        },
         help: {
             type: String
         }
@@ -60,9 +40,6 @@ export default {
     methods: {
         updateValue(value) {
             this.$emit('input', value)
-        },
-        removeError() {
-            this.errors[this.field] = ''
         }
     }
 }

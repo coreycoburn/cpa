@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form id="quote-form" method="POST" action="#" @submit.prevent="" @keydown.enter.prevent="">
+        <form id="quote-form" method="POST" action="#" @submit.prevent="">
             <div class="flex border-b mb-6">
                 <div>
                     <h2 class="mb-4">{{ formTitle }}</h2>
@@ -338,7 +338,62 @@
             </div>
 
             <div v-show="step === 3">
-                page 3
+                <div class="w-full mb-4">
+                    <div class="block text-grey-darker text-sm font-bold mb-2">
+                        Is this an annual event?
+                    </div>
+                    <div class="flex">
+                        <app-radio
+                            field="annual_event"
+                            title="Yes"
+                            val="1"
+                            v-model="form.annual_event"
+                        />
+                        <app-radio
+                            field="annual_event"
+                            title="No"
+                            val="0"
+                            v-model="form.annual_event"
+                            :check=true
+                        />
+                    </div>
+                </div>
+                <div class="w-full mb-4">
+                    <div class="block text-grey-darker text-sm font-bold mb-2">
+                        What is your preferred means of correspondence?
+                    </div>
+                    <div class="flex">
+                        <app-radio
+                            field="contact_method"
+                            title="Phone"
+                            val="Phone"
+                            v-model="form.contact_method"
+                        />
+                        <app-radio
+                            field="contact_method"
+                            title="Email"
+                            val="E-Mail"
+                            v-model="form.contact_method"
+                            :check=true
+                        />
+                    </div>
+                </div>
+                <div class="w-full mb-4">
+                    <app-input
+                        field="referral"
+                        title="How did you hear about us?"
+                        v-model="form.referral"
+                        help="google, a friend, past client, etc."
+                    />
+                </div>
+                <div class="w-full mb-4">
+                    <app-textarea
+                        field="client_message"
+                        title="Special requests / Additional comments / What's most important to you"
+                        help=""
+                        v-model="form.client_message"
+                    />
+                </div>
             </div>
 
             <div class="flex mt-8 mb-3 pt-6 border-t">
@@ -387,20 +442,26 @@
 </template>
 
 <script>
+import moment from 'moment'
+import VueScrollTo from 'vue-scrollto'
 import { HollowDotsSpinner } from 'epic-spinners'
+
 import AppSelect from '../components/Select'
 import AppInput from '../components/Input'
 import AppCheckbox from '../components/Checkbox'
-import { honorifics, states } from './options'
-import VueScrollTo from 'vue-scrollto'
-import moment from 'moment'
+import AppRadio from '../components/Radio'
+import AppTextarea from '../components/Textarea'
+import { honorifics, states, contactMethod } from './options'
+import AddressAutoComplete from '../classes/AddressAutoComplete'
 
 export default {
     components: {
         HollowDotsSpinner,
         AppSelect,
         AppInput,
-        AppCheckbox
+        AppCheckbox,
+        AppRadio,
+        AppTextarea
     },
     data() {
         return {
@@ -440,10 +501,17 @@ export default {
                 guests: '',
                 cars: '',
                 event_address: '',
-                event_city: ''
+                event_city: '',
+                event_state: '',
+                event_zip: '',
+                annual_event: '0',
+                contact_method: 'E-Mail',
+                referral: '',
+                client_message: ''
             },
             honorifics,
             states,
+            contactMethod,
             errors: [],
             processing: false
         }
@@ -484,44 +552,6 @@ export default {
             }
         },
 
-        googleAutocomplete() {
-            this.autocomplete = new google.maps.places.Autocomplete(
-                document.getElementById('contact_address'),
-                { types: ['geocode'] }
-            )
-
-            this.autocomplete.addListener('place_changed', () => {
-                let place = this.autocomplete.getPlace()
-                let ac = place.address_components
-                let addressNumber = ac[0]['long_name']
-                let addressName = ac[1]['long_name']
-                this.form.contact_city = place.vicinity
-
-                let lat = place.geometry.location.lat()
-                let lon = place.geometry.location.lng()
-
-                place.address_components.forEach(
-                    ({ long_name, short_name, types }) => {
-                        if (types[0] === 'street_number') {
-                            this.streetNumber = long_name
-                        }
-                        if (types[0] === 'route') {
-                            this.route = long_name
-                        }
-                        if (types[0] === 'administrative_area_level_1') {
-                            this.form.contact_state = short_name
-                        }
-                        if (types[0] === 'postal_code') {
-                            this.form.contact_zip = long_name
-                        }
-                    }
-                )
-
-                this.form.contact_address = this.address
-
-                document.getElementById('contact_zip').focus()
-            })
-        },
         errorPage() {
             const errors = [
                 { key: 'social_title', page: 1 },
@@ -529,7 +559,13 @@ export default {
                 { key: 'lname', page: 1 },
                 { key: 'phone', page: 1 },
                 { key: 'email', page: 1 },
-                { key: 'services', page: 2 }
+                { key: 'services', page: 2 },
+                { key: 'event_date', page: 2 },
+                { key: 'start', page: 2 },
+                { key: 'start_advertised', page: 2 },
+                { key: 'end', page: 2 },
+                { key: 'guests', page: 2 },
+                { key: 'cars', page: 2 }
             ]
 
             let pageList = []
@@ -567,7 +603,17 @@ export default {
         }
     },
     mounted() {
-        //this.googleAutocomplete()
+        new AddressAutoComplete(
+            'contact_address',
+            ['contact_address', 'contact_city', 'contact_state', 'contact_zip'],
+            this.form
+        )
+
+        new AddressAutoComplete(
+            'event_address',
+            ['event_address', 'event_city', 'event_state', 'event_zip'],
+            this.form
+        )
     }
 }
 </script>

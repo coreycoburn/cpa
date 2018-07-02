@@ -59,3 +59,11 @@ export const states = [
     { data: 'WI', title: 'Wisconsin' },
     { data: 'WY', title: 'Wyoming' }
 ]
+
+export const contactMethod = [
+    { data: 'Mr.', title: 'Mr.' },
+    { data: 'Mrs.', title: 'Mrs.' },
+    { data: 'Miss', title: 'Miss' },
+    { data: 'Ms.', title: 'Ms.' },
+    { data: 'Dr.', title: 'Dr.' }
+]

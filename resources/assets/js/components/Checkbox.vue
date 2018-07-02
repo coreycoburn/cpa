@@ -6,6 +6,7 @@
             :id="field"
             @input="updateValue"
             :checked=value
+            @keydown.enter.prevent=""
         >
         <label
             :for="field"

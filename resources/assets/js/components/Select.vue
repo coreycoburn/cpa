@@ -15,6 +15,7 @@
             :class="{ 'border border-red': errors[field] }"
             @change="updateValue($event.target.value)"
             @blur="removeError"
+            @keydown.enter.prevent=""
         >
             <!-- <option value="" disabled selected></option> -->
 

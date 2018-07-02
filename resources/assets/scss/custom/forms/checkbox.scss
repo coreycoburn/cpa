@@ -5,9 +5,8 @@
 }
 [type='checkbox']:not(:checked) + label,
 [type='checkbox']:checked + label {
-    @apply .relative .flex .cursor-pointer .pl-8 .-mt-6;
+    @apply .relative .inline-block .pl-8 .-mt-6;
 }
-
 /* checkbox aspect */
 [type='checkbox']:not(:checked) + label:before,
 [type='checkbox']:checked + label:before {

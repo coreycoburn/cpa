@@ -49,8 +49,12 @@ class StoreClientQuote extends FormRequest
             'cars' => 'required',
             'event_address' => 'nullable',
             'event_city' => 'nullable',
-            'event_start' => 'nullable',
-            'event_zip' => 'nullable'
+            'event_state' => 'nullable',
+            'event_zip' => 'nullable',
+            'annual_event' => 'nullable',
+            'contact_method' => 'nullable',
+            'referral' => 'nullable',
+            'client_message' => 'nullable'
         ];
     }
 

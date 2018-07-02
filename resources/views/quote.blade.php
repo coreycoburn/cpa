@@ -1,7 +1,7 @@
 @extends('layouts.app', ['title' => 'Free Quote'])
 
 @push('googlemaps')
-<script src="{{ config('services.google.places.uri') }}?key={{ config('services.google.places.key') }}&libraries=places" async defer></script>
+<script src="{{ config('services.google.places.uri') }}?key={{ config('services.google.places.key') }}&libraries=places" defer></script>
 @endpush
 
 @section('body')
