@@ -131,7 +131,7 @@
                                 group="services"
                                 field="service_valet"
                                 title="Valet Parking"
-                                v-model="form.services.valet"
+                                v-model="form.services.service_valet"
                                 :errors="errors"
                             />
                         </div>
@@ -141,7 +141,7 @@
                                 field="service_direction"
                                 title="Parking Direction"
                                 :errors="errors"
-                                v-model="form.services.direction"
+                                v-model="form.services.service_direction"
                             />
                         </div>
                     </div>
@@ -152,7 +152,7 @@
                                 field="service_shuttle"
                                 title="Shuttle"
                                 :errors="errors"
-                                v-model="form.services.shuttle"
+                                v-model="form.services.service_shuttle"
                             />
                         </div>
                         <div class="flex-1">
@@ -161,7 +161,7 @@
                                 field="service_coordination"
                                 title="Parking Coordination"
                                 :errors="errors"
-                                v-model="form.services.coordination"
+                                v-model="form.services.service_coordination"
                             />
                         </div>
                     </div>
@@ -309,6 +309,8 @@
                         field="event_address"
                         title="Address"
                         v-model="form.event_address"
+                        :errors="errors"
+                        :required=true
                     />
                 </div>
                 <div class="flex mb-4">
@@ -317,6 +319,8 @@
                             field="event_city"
                             title="City"
                             v-model="form.event_city"
+                            :errors="errors"
+                            :required=true
                         />
                     </div>
                     <div class="w-2/5 mr-2">
@@ -325,6 +329,8 @@
                             title="State"
                             v-model="form.event_state"
                             :options=states
+                            :errors="errors"
+                            :required=true
                         />
                     </div>
                     <div class="w-1/5">
@@ -332,6 +338,8 @@
                             field="event_zip"
                             title="Zip"
                             v-model="form.event_zip"
+                            :errors="errors"
+                            :required=true
                         />
                     </div>
                 </div>
@@ -388,10 +396,10 @@
                 </div>
                 <div class="w-full mb-4">
                     <app-textarea
-                        field="client_message"
+                        field="message"
                         title="Special requests / Additional comments / What's most important to you"
                         help=""
-                        v-model="form.client_message"
+                        v-model="form.message"
                     />
                 </div>
             </div>
@@ -442,17 +450,17 @@
 </template>
 
 <script>
-import moment from 'moment'
-import VueScrollTo from 'vue-scrollto'
-import { HollowDotsSpinner } from 'epic-spinners'
+import moment from "moment";
+import VueScrollTo from "vue-scrollto";
+import { HollowDotsSpinner } from "epic-spinners";
 
-import AppSelect from '../components/Select'
-import AppInput from '../components/Input'
-import AppCheckbox from '../components/Checkbox'
-import AppRadio from '../components/Radio'
-import AppTextarea from '../components/Textarea'
-import { honorifics, states, contactMethod } from './options'
-import AddressAutoComplete from '../classes/AddressAutoComplete'
+import AppSelect from "../components/Select";
+import AppInput from "../components/Input";
+import AppCheckbox from "../components/Checkbox";
+import AppRadio from "../components/Radio";
+import AppTextarea from "../components/Textarea";
+import { honorifics, states, contactMethod } from "./options";
+import AddressAutoComplete from "../classes/AddressAutoComplete";
 
 export default {
     components: {
@@ -465,155 +473,159 @@ export default {
     },
     data() {
         return {
-            pageTitles: ['Contact Info', 'Event Info', 'Additional Info'],
+            pageTitles: ["Contact Info", "Event Info", "Additional Info"],
             step: 1,
             finalStep: 3,
-            streetNumber: '',
-            route: '',
+            streetNumber: "",
+            route: "",
             today: moment().format(),
             copyAddressBox: false,
             form: {
-                social_title: '',
-                fname: '',
-                lname: '',
-                company: '',
-                phone: '',
-                phone_ext: '',
-                fax: '',
-                email: '',
-                contact_address: '',
-                contact_city: '',
-                contact_state: '',
-                contact_zip: '',
+                social_title: "",
+                fname: "",
+                lname: "",
+                company: "",
+                phone: "",
+                phone_ext: "",
+                fax: "",
+                email: "",
+                contact_address: "",
+                contact_city: "",
+                contact_state: "",
+                contact_zip: "",
                 services: {
-                    valet: false,
-                    direction: false,
-                    shuttle: false,
-                    coordination: false
+                    service_valet: false,
+                    service_direction: false,
+                    service_shuttle: false,
+                    service_coordination: false
                 },
-                event_type: '',
-                location_type: '',
-                location_name: '',
-                event_date: '',
-                start: '',
-                start_advertised: '',
-                end: '',
-                guests: '',
-                cars: '',
-                event_address: '',
-                event_city: '',
-                event_state: '',
-                event_zip: '',
-                annual_event: '0',
-                contact_method: 'E-Mail',
-                referral: '',
-                client_message: ''
+                event_type: "",
+                location_type: "",
+                location_name: "",
+                event_date: "",
+                start: "",
+                start_advertised: "",
+                end: "",
+                guests: "",
+                cars: "",
+                event_address: "",
+                event_city: "",
+                event_state: "",
+                event_zip: "",
+                annual_event: "0",
+                contact_method: "E-Mail",
+                referral: "",
+                message: ""
             },
             honorifics,
             states,
             contactMethod,
             errors: [],
             processing: false
-        }
+        };
     },
     methods: {
         prev() {
-            this.step--
+            this.step--;
         },
 
         next() {
-            this.step++
+            this.step++;
         },
 
         async submit() {
-            this.processing = true
+            this.processing = true;
 
             try {
-                const response = await axios.post('quote', this.form)
+                const response = await axios.post("quote", this.form);
 
-                this.processing = false
-                this.$refs.quoteModal.open()
-                document.getElementById('quote-form').reset()
-                Object.assign(this.$data, this.$options.data())
-                this.step = 1
-                VueScrollTo.scrollTo('body', 500, { offset: -52 })
+                this.processing = false;
+                this.$refs.quoteModal.open();
+                document.getElementById("quote-form").reset();
+                Object.assign(this.$data, this.$options.data());
+                this.step = 1;
+                VueScrollTo.scrollTo("body", 500, { offset: -52 });
 
-                console.log(response.data)
+                console.log(response.data);
             } catch (error) {
-                this.errors = error.response.data.errors
+                this.errors = error.response.data.errors;
 
-                this.processing = false
-                this.step = this.errorPage()
-                VueScrollTo.scrollTo('#quote-container', 500, { offset: -52 })
+                this.processing = false;
+                this.step = this.errorPage();
+                VueScrollTo.scrollTo("#quote-container", 500, { offset: -52 });
                 this.flash(
-                    'Whoops! 😯 Please fix the validation errors.',
-                    'fixed pin-b pin-r mr-6 mb-6 bg-red text-white rounded p-6'
-                )
+                    "Whoops! 😯 Please fix the validation errors.",
+                    "fixed pin-b pin-r mr-6 mb-6 bg-red text-white rounded p-6"
+                );
             }
         },
 
         errorPage() {
             const errors = [
-                { key: 'social_title', page: 1 },
-                { key: 'fname', page: 1 },
-                { key: 'lname', page: 1 },
-                { key: 'phone', page: 1 },
-                { key: 'email', page: 1 },
-                { key: 'services', page: 2 },
-                { key: 'event_date', page: 2 },
-                { key: 'start', page: 2 },
-                { key: 'start_advertised', page: 2 },
-                { key: 'end', page: 2 },
-                { key: 'guests', page: 2 },
-                { key: 'cars', page: 2 }
-            ]
+                { key: "social_title", page: 1 },
+                { key: "fname", page: 1 },
+                { key: "lname", page: 1 },
+                { key: "phone", page: 1 },
+                { key: "email", page: 1 },
+                { key: "services", page: 2 },
+                { key: "event_date", page: 2 },
+                { key: "start", page: 2 },
+                { key: "start_advertised", page: 2 },
+                { key: "end", page: 2 },
+                { key: "guests", page: 2 },
+                { key: "cars", page: 2 },
+                { key: "event_address", page: 2 },
+                { key: "event_city", page: 2 },
+                { key: "event_state", page: 2 },
+                { key: "event_zip", page: 2 }
+            ];
 
-            let pageList = []
+            let pageList = [];
 
             errors.forEach(({ key, page }) => {
                 if (Object.keys(this.errors).includes(key)) {
-                    pageList.push(page)
+                    pageList.push(page);
                 }
-            })
+            });
 
-            return Math.min(...pageList)
+            return Math.min(...pageList);
         }
     },
     computed: {
         formTitle() {
-            return this.pageTitles[this.step - 1]
+            return this.pageTitles[this.step - 1];
         },
         address() {
-            return `${this.streetNumber} ${this.route}`
+            return `${this.streetNumber} ${this.route}`;
         }
     },
     watch: {
         copyAddressBox() {
             if (this.copyAddressBox) {
-                this.form.event_address = this.form.contact_address
-                this.form.event_city = this.form.contact_city
-                this.form.event_state = this.form.contact_state
-                this.form.event_zip = this.form.contact_zip
+                this.form.event_address = this.form.contact_address;
+                this.form.event_city = this.form.contact_city;
+                this.form.event_state = this.form.contact_state;
+                this.form.event_zip = this.form.contact_zip;
             } else {
-                this.form.event_address = ''
-                this.form.event_city = ''
-                this.form.event_state = ''
-                this.form.event_zip = ''
+                this.form.event_address = "";
+                this.form.event_city = "";
+                this.form.event_state = "";
+                this.form.event_zip = "";
             }
         }
     },
     mounted() {
         new AddressAutoComplete(
-            'contact_address',
-            ['contact_address', 'contact_city', 'contact_state', 'contact_zip'],
+            "contact_address",
+            ["contact_address", "contact_city", "contact_state", "contact_zip"],
             this.form
-        )
+        );
 
         new AddressAutoComplete(
-            'event_address',
-            ['event_address', 'event_city', 'event_state', 'event_zip'],
+            "event_address",
+            ["event_address", "event_city", "event_state", "event_zip"],
             this.form
-        )
+        );
     }
-}
+};
 </script>

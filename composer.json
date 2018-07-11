@@ -18,6 +18,7 @@
         "nothingworks/blade-svg": "^0.2.2",
         "php-http/guzzle6-adapter": "^1.1",
         "php-http/message": "^1.6",
+        "predis/predis": "^1.1",
         "propaganistas/laravel-phone": "^4.0",
         "vinkla/instagram": "^9.0"
     },
@@ -30,6 +31,7 @@
         "phpunit/phpunit": "^7.0"
     },
     "autoload": {
+        "files": ["app/helpers.php"],
         "classmap": ["database/seeds", "database/factories"],
         "psr-4": {
             "App\\": "app/"

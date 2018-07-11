@@ -4,6 +4,8 @@ return [
     'name' => 'C.P.A. Valet',
     'legal_name' => 'Certified Parking Attendants, LLC.',
     'slogan' => 'The Premier Parking & Shuttle Service of the Bay Area',
+    'url' => 'https://cpavalet.com',
+    'url_short' => 'cpavalet.com',
     'address' => [
         'mailing' => [
             'address' => '448 Ignacio Blvd. #251',

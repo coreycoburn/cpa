@@ -24,19 +24,19 @@ class StoreClientQuote extends FormRequest
      */
     public function rules()
     {
-        return [
+        $validated = [
             'social_title' => 'required',
             'fname' => 'required',
             'lname' => 'required',
             'company' => 'nullable',
             'phone' => 'required|phone:US',
             'phone_ext' => 'nullable',
-            'fax' => 'nullable',
+            'fax' => 'nullable|phone:US',
             'email' => 'required|email',
             'contact_address' => 'nullable',
             'contact_city' => 'nullable',
             'contact_state' => 'nullable',
-            'contactzip' => 'nullable',
+            'contact_zip' => 'nullable',
             'services' => [new AtLeastOneCheckboxRule],
             'event_type' => 'nullable',
             'location_type' => 'nullable',
@@ -47,15 +47,17 @@ class StoreClientQuote extends FormRequest
             'end' => 'required',
             'guests' => 'required',
             'cars' => 'required',
-            'event_address' => 'nullable',
-            'event_city' => 'nullable',
-            'event_state' => 'nullable',
-            'event_zip' => 'nullable',
+            'event_address' => 'required',
+            'event_city' => 'required',
+            'event_state' => 'required',
+            'event_zip' => 'required',
             'annual_event' => 'nullable',
             'contact_method' => 'nullable',
             'referral' => 'nullable',
-            'client_message' => 'nullable'
+            'message' => 'nullable'
         ];
+
+        return $validated;
     }
 
     /**

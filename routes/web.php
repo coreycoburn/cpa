@@ -6,5 +6,5 @@ Route::get('/services', 'MarketingController@services')->name('services');
 Route::get('/accolades', 'MarketingController@accolades')->name('accolades');
 Route::get('/employment', 'MarketingController@employment')->name('employment');
 
-Route::get('/quote', 'QuoteController@index')->name('quote');
-Route::post('/quote', 'QuoteController@store')->name('quote');
+Route::get('/quote', 'Quote\QuoteController@index')->name('quote');
+Route::post('/quote', 'Quote\QuoteController@store')->name('quote');
