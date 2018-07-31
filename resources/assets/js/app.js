@@ -1,29 +1,34 @@
-import './bootstrap'
-import './components'
-import './forms'
-import Vue from 'vue'
-import Turbolinks from 'turbolinks'
-import VueCarousel from 'vue-carousel'
-import VueScrollTo from 'vue-scrollto'
-import SweetModal from 'sweet-modal-vue/src/plugin'
-import VueFlashMessage from 'vue-flash-message'
-import Datetime from 'vue-datetime'
-import 'vue-datetime/dist/vue-datetime.css'
-import TurbolinksAdapter from 'vue-turbolinks'
+import './bootstrap';
+import './components';
+import './forms';
+import Vue from 'vue';
+import Turbolinks from 'turbolinks';
+import VueCarousel from 'vue-carousel';
+import VueScrollTo from 'vue-scrollto';
+import PortalVue from 'portal-vue';
+import SweetModal from 'sweet-modal-vue/src/plugin';
+import VueFlashMessage from 'vue-flash-message';
+import Datetime from 'vue-datetime';
+import 'vue-datetime/dist/vue-datetime.css';
+import TurbolinksAdapter from 'vue-turbolinks';
 
-Turbolinks.start()
+// Vue config
+Vue.config.productionTip = false;
 
-Vue.use(TurbolinksAdapter)
-Vue.use(VueCarousel)
-Vue.use(VueScrollTo)
-Vue.use(SweetModal)
+Turbolinks.start();
+
+Vue.use(TurbolinksAdapter);
+Vue.use(VueCarousel);
+Vue.use(VueScrollTo);
+Vue.use(PortalVue);
+Vue.use(SweetModal);
 Vue.use(VueFlashMessage, {
     messageOptions: {
         timeout: 3000,
-        important: true
-    }
-})
-Vue.use(Datetime)
+        important: true,
+    },
+});
+Vue.use(Datetime);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -33,6 +38,6 @@ Vue.use(Datetime)
 
 document.addEventListener('turbolinks:load', () => {
     const app = new Vue({
-        el: '#app'
-    })
-})
+        el: '#app',
+    });
+});

@@ -3,6 +3,7 @@
 return [
     'name' => 'C.P.A. Valet',
     'legal_name' => 'Certified Parking Attendants, LLC.',
+    'name_short' => 'cpa',
     'slogan' => 'The Premier Parking & Shuttle Service of the Bay Area',
     'url' => 'https://cpavalet.com',
     'url_short' => 'cpavalet.com',
@@ -26,7 +27,8 @@ return [
         'fax' => '(415) 382-3356'
     ],
     'email' => [
-        'main' => 'info@cpavalet.com'
+        'main' => 'info@cpavalet.com',
+        'special_events' => 'events@cpavalet.com'
     ],
     'social' => [
         'instagram' => 'https://www.instagram.com/cpavalet',

@@ -24,7 +24,7 @@ class StoreClientQuote extends FormRequest
      */
     public function rules()
     {
-        $validated = [
+        return [
             'social_title' => 'required',
             'fname' => 'required',
             'lname' => 'required',
@@ -56,8 +56,6 @@ class StoreClientQuote extends FormRequest
             'referral' => 'nullable',
             'message' => 'nullable'
         ];
-
-        return $validated;
     }
 
     /**

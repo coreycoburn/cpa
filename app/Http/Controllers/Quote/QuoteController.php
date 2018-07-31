@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Quote;
 
+use App\ContractTodo;
 use App\Event;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreClientQuote;
@@ -43,9 +44,12 @@ class QuoteController extends Controller
 
         Mail::to($validated['email'])
             ->cc('soraya@cpavalet.com')
-            ->bcc(['events@cpavalet.com', 'events2@cpavalet.com'])
+            // ->bcc(['events@cpavalet.com', 'events2@cpavalet.com'])
             ->queue(new QuoteRequest($validated));
 
-        Event::create($validated);
+        $event = Event::create($validated);
+
+        $todo = new ContractTodo;
+        $event->todos()->save($todo);
     }
 }

@@ -9,7 +9,7 @@
         </label>
         <input
             class="appearance-none rounded w-full py-2 px-3 text-grey-darker leading-tight"
-            :class="{ 'border border-red': errors[field] }"
+            :class="[formClass, { 'border border-red': errors[field] }]"
             :id="field"
             :name="field"
             type="text"
@@ -54,6 +54,9 @@ export default {
             default: false
         },
         help: {
+            type: String
+        },
+        formClass: {
             type: String
         }
     },

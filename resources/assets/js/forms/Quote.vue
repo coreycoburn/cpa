@@ -545,8 +545,6 @@ export default {
                 Object.assign(this.$data, this.$options.data());
                 this.step = 1;
                 VueScrollTo.scrollTo("body", 500, { offset: -52 });
-
-                console.log(response.data);
             } catch (error) {
                 this.errors = error.response.data.errors;
 

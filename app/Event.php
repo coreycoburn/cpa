@@ -2,8 +2,9 @@
 
 namespace App;
 
-use Propaganistas\LaravelPhone\PhoneNumber;
+use App\ContractTodo;
 use Illuminate\Database\Eloquent\Model;
+use Propaganistas\LaravelPhone\PhoneNumber;
 
 class Event extends Model
 {
@@ -51,5 +52,10 @@ class Event extends Model
     public function getPhoneAttribute($value)
     {
         return PhoneNumber::make($value, 'US')->formatForCountry('US');
+    }
+
+    public function todos()
+    {
+        return $this->hasMany(ContractTodo::class);
     }
 }
