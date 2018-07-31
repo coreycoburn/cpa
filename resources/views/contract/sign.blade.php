@@ -126,6 +126,7 @@
                 last-name="{{ $data['last_name'] }}"
                 email="{{ $data['email'] }}"
                 office-contact="{{ config('company.email.special_events') }}"
+                :signed-count="{{ $data['signedCount'] }}"
             >
             </cpa-sign-contract-page>
         </div>

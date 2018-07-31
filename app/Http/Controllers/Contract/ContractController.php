@@ -7,11 +7,12 @@ use App\ContractTodo;
 use App\Employee;
 use App\Event;
 use App\Http\Controllers\Contract\ContractData;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\Contract\ParseUrl;
 use App\Http\Controllers\Contract\Recipient;
 use App\Http\Controllers\Contract\Sign\BookIt;
 use App\Http\Controllers\Contract\Sign\UploadSignature;
+use App\Http\Controllers\Contract\Sign\Signed;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\DeclineContract;
 use App\Http\Requests\ReviseContract;
 use App\Http\Requests\SignContract as SignContract;
@@ -39,6 +40,7 @@ class ContractController extends Controller
             'pdf' => config('contract.url') . 'contract.php?sign=' . $request->get('sign'),
             'today' => Carbon::now()->format('D, M j, Y'),
             'previously_signed' => $upload->exists(),
+            'signedCount' => (new Signed())->count($request->get(['client'])),
             'sig_y' => $request->get('sig_y')
         ]);
 

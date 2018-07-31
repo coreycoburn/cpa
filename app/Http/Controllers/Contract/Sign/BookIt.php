@@ -30,6 +30,7 @@ class BookIt
 
         $contract->book_client = 'yes';
         $contract->book_client_time = now();
+        $contract->book_client_data = $this->userData();
         $contract->save();
 
         $this->contract = $contract;
@@ -40,5 +41,13 @@ class BookIt
     public function contract()
     {
         return $this->contract;
+    }
+
+    private function userData()
+    {
+        return implode(',', [
+            request()->ip(),
+            request()->header('User-Agent')
+        ]);
     }
 }

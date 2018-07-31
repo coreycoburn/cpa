@@ -5,6 +5,7 @@
         :data="data"
         :pdf="pdf"
         :type="type"
+        :box-width="(signedCount === 0) ? 'md:w-1/3' : 'md:w-1/2'"
         :first-name="firstName"
         :last-name="lastName"
         :email="email"
@@ -17,7 +18,7 @@
 
       <cpa-revise
         :type="type"
-        box-width="md:w-1/3"
+        :box-width="(signedCount === 0) ? 'md:w-1/3' : 'md:w-1/2'"
         :contract="contract"
         :contract-id="contractId"
         :email="email"
@@ -31,6 +32,7 @@
         :contract-id="contractId"
         :email="email"
         :officeContact="officeContact"
+        v-if="signedCount === 0"
       />
     </div>
   </div>
@@ -93,6 +95,10 @@ export default {
     officeContact: {
       required: true,
       type: String
+    },
+    signedCount: {
+      required: true,
+      type: Number
     }
   },
   components: {

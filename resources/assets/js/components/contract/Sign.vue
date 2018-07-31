@@ -1,5 +1,8 @@
 <template>
-  <div class="flex flex-col w-full md:w-1/3 mr-6 bg-white p-6 border-t-4 border-green shadow text-center">
+  <div
+    class="flex flex-col w-full mr-6 bg-white p-6 border-t-4 border-green shadow text-center"
+    :class="boxWidth"
+  >
     <h3 class="mb-4 text-center">Acceptance of <span class="capitalize">{{ type }}</span></h3>
     <p class="flex-1 text-left">
       To accept the terms of the above {{ type }}, please click the "sign {{ type }}" button below.
@@ -183,6 +186,10 @@ export default {
     type: {
       required: true,
       type: String
+    },
+    boxWidth: {
+        required: true,
+        type: String
     },
     firstName: {
       required: true,
