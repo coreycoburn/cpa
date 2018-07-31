@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Quote;
+namespace App\Http\Controllers\Contract;
 
 class ParseUrl
 {

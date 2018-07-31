@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Quote\Sign;
+namespace App\Http\Controllers\Contract\Sign;
 
 use App\Confirmation;
 use App\Event;

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Contract;
 
 use App\Confirmation;
-use App\Http\Controllers\Quote\Recipient;
+use App\Http\Controllers\Contract\Recipient;
 use App\Proposal;
 use Illuminate\Support\Carbon;
 

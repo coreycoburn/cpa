@@ -6,12 +6,12 @@ Route::get('/services', 'MarketingController@services')->name('services');
 Route::get('/accolades', 'MarketingController@accolades')->name('accolades');
 Route::get('/employment', 'MarketingController@employment')->name('employment');
 
-Route::get('/quote', 'Quote\QuoteController@index')->name('quote');
-Route::post('/quote', 'Quote\QuoteController@store');
+Route::get('/quote', 'QuoteController@index')->name('quote');
+Route::post('/quote', 'QuoteController@store');
 
-Route::get('/contract/sign', 'ContractController@index')->name('sign-contract');
-Route::post('/contract/sign', 'ContractController@store');
-Route::post('/contract/revise', 'ContractController@revise');
-Route::post('/contract/decline', 'ContractController@decline');
+Route::get('/contract/sign', 'Contract\ContractController@index')->name('sign-contract');
+Route::post('/contract/sign', 'Contract\ContractController@store');
+Route::post('/contract/revise', 'Contract\ContractController@revise');
+Route::post('/contract/decline', 'Contract\ContractController@decline');
 
-Route::get('/contract/deposit', 'ContractDepositController@index')->name('contract-deposit');
+Route::get('/contract/deposit', 'Contract\Deposit\ContractDepositController@index')->name('contract-deposit');

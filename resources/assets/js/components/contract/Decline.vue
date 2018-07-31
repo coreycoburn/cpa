@@ -165,7 +165,8 @@ export default {
       this.$refs.modalConfirm.open();
     },
     closeDeclineConfirm() {
-        location.replace("/");
+        this.$refs.modalConfirm.close();
+        // location.replace("/");
     }
   }
 };

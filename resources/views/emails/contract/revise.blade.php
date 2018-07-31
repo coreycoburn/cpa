@@ -1,7 +1,5 @@
 @component('mail::message')
-# Requested Change
-
-#### Reference to {{ $contractType }} #{{ $contractNumber }}
+# Request Changes
 
 Dear {{ $socialTitle }} {{ $lastName }},
 
@@ -11,5 +9,7 @@ Requested Changes:
 @component('mail::panel')
 {{ $message }}
 @endcomponent
+
+#### Reference to {{ $contractType }} #{{ $contractNumber }}
 
 @endcomponent

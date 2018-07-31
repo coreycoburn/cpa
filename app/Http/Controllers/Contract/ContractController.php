@@ -1,19 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Contract;
 
 use App\Confirmation;
 use App\ContractTodo;
 use App\Employee;
 use App\Event;
 use App\Http\Controllers\Contract\ContractData;
-use App\Http\Controllers\Quote\ParseUrl;
-use App\Http\Controllers\Quote\Recipient;
-use App\Http\Controllers\Quote\Sign\BookIt;
-use App\Http\Controllers\Quote\Sign\UploadSignature;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\Contract\ParseUrl;
+use App\Http\Controllers\Contract\Recipient;
+use App\Http\Controllers\Contract\Sign\BookIt;
+use App\Http\Controllers\Contract\Sign\UploadSignature;
 use App\Http\Requests\DeclineContract;
 use App\Http\Requests\ReviseContract;
 use App\Http\Requests\SignContract as SignContract;
+use App\Mail\DeclinedContract;
 use App\Mail\RevisedContract;
 use App\Mail\SignedContract;
 use App\Proposal;
@@ -88,6 +90,21 @@ class ContractController extends Controller
     {
         $validated = $request->validated();
 
-        dump($validated);
+        $event = Event::find($validated['event_id']);
+
+        $event->book_client = 'td';
+        $event->td_notes = $validated['message'];
+        $event->save();
+
+        $recipient = new Recipient($event);
+
+        Mail::to($validated['email'])
+            // ->bcc(['soraya@cpavalet.com', 'events@cpavalet.com', 'events2@cpavalet.com'])
+            ->queue(new DeclinedContract([
+                $event,
+                $recipient->get(),
+                $validated,
+                $event->userQuestion->email
+            ]));
     }
 }

@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Quote;
+namespace App\Http\Controllers;
 
 use App\ContractTodo;
 use App\Event;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreClientQuote;
 use App\Mail\QuoteRequest;
 use Illuminate\Http\Request;

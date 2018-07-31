@@ -39,6 +39,7 @@ class RevisedContract extends Mailable
     {
         return $this->markdown('emails.contract.revise')
             ->from($this->fromEmail)
+            ->subject('Request Changes to ' . $this->contract->contract_type . ' # ' . $this->contract->contract_number)
             ->with([
                 'socialTitle' => $this->contractRecipient->social_title,
                 'lastName' => $this->contractRecipient->last_name,

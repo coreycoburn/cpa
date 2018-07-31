@@ -54,6 +54,11 @@ class Event extends Model
         return PhoneNumber::make($value, 'US')->formatForCountry('US');
     }
 
+    public function userQuestion()
+    {
+        return $this->belongsTo(Employee::class, 'questions');
+    }
+
     public function todos()
     {
         return $this->hasMany(ContractTodo::class);
