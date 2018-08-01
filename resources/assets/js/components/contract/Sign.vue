@@ -122,7 +122,7 @@
 
     <sweet-modal
       ref="completedModal"
-      title="Signed Contract Received"
+      :title="modalSignedTitle"
       blocking
       overlay-theme="dark"
       hide-close-button
@@ -241,6 +241,9 @@ export default {
   computed: {
     modalSignTitle() {
       return `Sign ${this.type.charAt(0).toUpperCase() + this.type.substr(1)}`;
+    },
+    modalSignedTitle() {
+      return `Signed ${this.type.charAt(0).toUpperCase() + this.type.substr(1)} Received`;
     }
   },
   mounted() {
@@ -309,7 +312,7 @@ export default {
       this.signaturePad.clear();
     },
     download() {
-      window.location.href = `${this.pdf}.pdf&save=1`;
+      window.location.href = `${this.pdf}&save=1`;
     },
     payDeposit() {
       window.location.href = `/contract/deposit?data=${this.data}`;

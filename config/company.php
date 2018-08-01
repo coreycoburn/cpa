@@ -7,6 +7,7 @@ return [
     'slogan' => 'The Premier Parking & Shuttle Service of the Bay Area',
     'url' => 'https://cpavalet.com',
     'url_short' => 'cpavalet.com',
+    'leapurl' => 'https://members.cpavalet.com',
     'address' => [
         'mailing' => [
             'address' => '448 Ignacio Blvd. #251',

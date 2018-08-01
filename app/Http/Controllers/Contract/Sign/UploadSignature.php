@@ -34,14 +34,14 @@ class UploadSignature
 
     private function _path($data)
     {
-        $client = $data['client'];
+        $client = $data->client;
 
-        if ($data['proposal_id']) {
+        if ($data->proposal_id) {
             $subfolder = 'proposal';
-            $type_id = $data['proposal_id'];
+            $type_id = $data->proposal_id;
         } else {
             $subfolder = 'confirmation';
-            $type_id = $data['confirmation_id'];
+            $type_id = $data->confirmation_id;
         }
 
         return "signed-contracts/$client/$subfolder/$type_id/signature.png";

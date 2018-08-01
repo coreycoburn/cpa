@@ -15,10 +15,12 @@ class Recipient
             $data['first_name'] = $event->fname;
             $data['last_name'] = $event->lname;
             $data['email'] = $event->email;
+            $data['phone'] = $event->phone;
         } else if ($event->address_contact == 2) {
             $data['first_name'] = $event->fname2;
             $data['last_name'] = $event->lname2;
             $data['email'] = $event->email2;
+            $data['phone'] = $event->phone2;
         }
 
         if ($event->social_title == 'Unknown') {

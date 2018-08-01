@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Contract;
 
 use App\Confirmation;
 use App\Http\Controllers\Contract\Recipient;
+use App\Http\Controllers\Contract\Sign\Signed;
+use App\Http\Controllers\Contract\Sign\UploadSignature;
 use App\Proposal;
 use Illuminate\Support\Carbon;
 
@@ -31,6 +33,12 @@ class ContractData
         $this->data['event_date'] = Carbon::parse($this->contract->event_date)->format('l, F j, Y');
         $this->data['quote_type'] = (is_int($request->proposal_id)) ? 'proposal' : 'confirmation';
 
+        $this->data['data'] = $request->sign;
+        $this->data['pdf'] = config('contract.url') . 'contract.php?sign=' . $request->sign;
+        $this->data['today'] = Carbon::now()->format('D, M j, Y');
+        $this->data['previously_signed'] = $this->_uploadExists($request);
+        $this->data['signedCount'] = $this->_signedCount($request);
+        $this->data['sig_y'] = $request->sig_y;
     }
 
     public function getContract()
@@ -38,9 +46,9 @@ class ContractData
         return $this->contract;
     }
 
-    public function getData()
+    public function get()
     {
-        return $this->data;
+        return (object) $this->data;
     }
 
     private function _recipient()
@@ -63,5 +71,15 @@ class ContractData
         $servicesString = join(' and ', array_filter(array_merge([join(', ', array_slice($services, 0, -1))], array_slice($services, -1)), 'strlen'));
 
         $this->data['services'] = $servicesString . ' ' . str_plural('services', count($services));
+    }
+
+    private function _uploadExists($request)
+    {
+        return (new UploadSignature($request))->exists();
+    }
+
+    private function _signedCount($request)
+    {
+        return (new Signed())->count($request->client);
     }
 }
