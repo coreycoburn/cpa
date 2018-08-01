@@ -244,6 +244,9 @@ export default {
     },
     modalSignedTitle() {
       return `Signed ${this.type.charAt(0).toUpperCase() + this.type.substr(1)} Received`;
+    },
+    depositUrl() {
+        return `/contract/deposit?data=${this.data}`;
     }
   },
   mounted() {
@@ -287,7 +290,8 @@ export default {
         type: this.type,
         proposal_id: this.proposal,
         confirmation_id: this.confirmation,
-        email: this.email
+        email: this.email,
+        param: this.data
       };
 
       try {
@@ -315,7 +319,7 @@ export default {
       window.location.href = `${this.pdf}&save=1`;
     },
     payDeposit() {
-      window.location.href = `/contract/deposit?data=${this.data}`;
+      window.location.href = this.depositUrl;
     },
     closeSignedComplete() {
       window.location.replace(`/contract/sign?sign=${this.data}`);

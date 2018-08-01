@@ -35,7 +35,7 @@ class SignedContract extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.contract.update')
+        return $this->markdown('emails.contract.sign')
             ->from('info@cpavalet.com')
             ->attachData(file_get_contents($this->request->pdf), config('company.name_short'). '_signed_contract_#' . $this->contract->contract_number . '.pdf', [
                     'mime' => 'application/pdf',
@@ -47,8 +47,8 @@ class SignedContract extends Mailable
                 'contractType' => $this->contract->contract_type,
                 'contractNumber' => $this->contract->contract_number,
                 'eventType' => $this->contract->event_type,
-                'depositDueDate' => Carbon::parse($this->contract->dep1_due_date)->format('D, M j, Y')
-
+                'depositDueDate' => Carbon::parse($this->contract->dep1_due_date)->format('D, M j, Y'),
+                'param' => $this->request->param,
             ]);
     }
 }

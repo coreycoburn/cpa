@@ -31,6 +31,7 @@ class SignContract extends FormRequest
             'proposal_id' => 'nullable',
             'confirmation_id' => 'nullable',
             'email' => 'required',
+            'param' => 'required'
         ];
     }
 }

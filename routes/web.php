@@ -12,7 +12,8 @@ Route::post('/quote', 'QuoteController@store');
 Route::get('/contract/sign', 'Contract\ContractController@index')
     ->name('sign-contract')
     ->middleware('quote');
-Route::post('/contract/sign', 'Contract\ContractController@store');
+
+Route::post('/contract/sign', 'Contract\ContractController@sign');
 Route::post('/contract/revise', 'Contract\ContractController@revise');
 Route::post('/contract/decline', 'Contract\ContractController@decline');
 

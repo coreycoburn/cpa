@@ -33,7 +33,7 @@ class ContractController extends Controller
         return view('contract.sign', compact('data'));
     }
 
-    public function store(SignContract $request)
+    public function sign(SignContract $request)
     {
         $validated = (object) $request->validated();
 
