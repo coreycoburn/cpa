@@ -1,15 +1,13 @@
 @component('mail::message')
-# Request Changes
+# Change Request Received
 
 Dear {{ $socialTitle }} {{ $lastName }},
 
-We have received your request to modify the letter for your {{ $eventType }} on {{ $eventDate }}. We will review the change request and will respond to your request shortly.
+We will review and respond to your change request for {{ $contractTypeLower }} #{{ $contractNumber }} for your {{ $eventType }} on {{ $eventDate }}.
 
 Requested Changes:
 @component('mail::panel')
 {{ $message }}
 @endcomponent
-
-#### Reference to {{ $contractType }} #{{ $contractNumber }}
 
 @endcomponent

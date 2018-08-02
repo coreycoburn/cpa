@@ -23,7 +23,7 @@
         :contract-id="contractId"
         :email="email"
       >
-          See a change that needs to be made to the {{ type }}? Incorrect address? Incorrect guest arrival time? Incorrect employee start time? Click the "request changes" button to let us know what revisions need to be made.
+        For corrections / changes to the above {{ type }}, please click the button below.
       </cpa-revise>
 
       <cpa-decline

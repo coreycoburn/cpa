@@ -84,7 +84,7 @@
       hide-close-button
     >
         <p class="normal-case">
-            We have received your request for changes to {{ type }} #{{ contract }}. We will review the change request and will respond to your request shortly.
+            We will review and respond to your change request for {{ type }} #{{ contract }}.
         </p>
         <button
             slot="button"

@@ -43,8 +43,9 @@ class RevisedContract extends Mailable
             ->with([
                 'socialTitle' => $this->contractRecipient->social_title,
                 'lastName' => $this->contractRecipient->last_name,
-                'eventDate' => Carbon::parse($this->contract->event_date)->format('D, M j, Y'),
+                'eventDate' => Carbon::parse($this->contract->event_date)->format('l, F j, Y'),
                 'contractType' => $this->contract->contract_type,
+                'contractTypeLower' => strtolower($this->contract->contract_type),
                 'contractNumber' => $this->contract->contract_number,
                 'eventType' => $this->contract->event_type,
                 'message' => $this->request->message

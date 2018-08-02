@@ -65,11 +65,11 @@
                 Please review the following {{ $data->quote_type }} for {{ $data->services }} for your event on <span class="font-bold">{{ $data->event_date }}</span>. To secure our services, please sign at the bottom of this page.
             </p>
             <div class="bg-orange-lightest border-l-4 border-orange text-orange-dark px-4 py-1 mt-8" role="alert">
-                <p class="font-bold capitalize text-sm">
+                <p class="font-bold capitalize text-sm my-2">
                     Having Trouble Viewing <span class="capitalize">{{ $data->quote_type }}?</span>
                 </p>
-                <p class="text-xs">
-                    In the event that your web browser is not displaying the {{ $data->quote_type }} below, you may also review and sign it by viewing the attachment in the email we sent you.
+                <p class="text-xs my-1">
+                    In the event that your web browser is not displaying the {{ $data->quote_type }} below, you can review and sign it by viewing the attachment in the email we sent you.
                 </p>
             </div>
         </div>

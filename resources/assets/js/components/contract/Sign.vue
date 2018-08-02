@@ -5,7 +5,7 @@
   >
     <h3 class="mb-4 text-center">Acceptance of <span class="capitalize">{{ type }}</span></h3>
     <p class="flex-1 text-left">
-      To accept the terms of the above {{ type }}, please click the "sign {{ type }}" button below.
+      To accept the terms of the above {{ type }}, please click the button below.
     </p>
     <portal to="sign-target">
       <button
@@ -33,13 +33,15 @@
       <div class="text-left">
         <div>
             <p>
-              I, {{ firstName }} {{ lastName }}, accept the terms and conditions outlined in {{ type }} #{{ contract }}.” By signing in the box and clicking "<span class="uppercase">I accept</span>", I am securing C.P.A. Valet services based on {{ type }} #{{ contract }}.
+              To secure C.P.A. Valet services based on the terms and conditions outlined in {{ type }} #{{ contract }} complete the following steps:
             </p>
+            <ol>
+                <li>Sign in the signature box below.</li>
+                <li>Click the "<span class="uppercase">I accept</span>" button below.</li>
+            </ol>
+
             <p>
               Please refer to the {{ type }} for our cancellation policy.
-            </p>
-            <p>
-              If there are changes to your event that will impact this {{ type }}, return to this page to request a revision.
             </p>
         </div>
 
@@ -73,7 +75,7 @@
           :height="canvasH"
         />
         <div class="text-sm mb-2">
-            X Sign above line
+            X Sign above this bold line
         </div>
         <div class="text-sm">
           {{ firstName }} {{ lastName }} on {{ today }}
