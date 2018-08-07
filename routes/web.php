@@ -17,4 +17,6 @@ Route::post('/contract/sign', 'Contract\ContractController@sign');
 Route::post('/contract/revise', 'Contract\ContractController@revise');
 Route::post('/contract/decline', 'Contract\ContractController@decline');
 
-Route::get('/contract/deposit', 'Contract\Deposit\ContractDepositController@index')->name('contract-deposit');
+Route::get('/contract/deposit', 'Contract\Deposit\ContractDepositController@index')
+    ->name('contract-deposit')
+    ->middleware('quote');

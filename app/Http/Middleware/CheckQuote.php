@@ -2,8 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Event;
-use App\Exceptions\QuoteDeclined;
+use App\Http\Controllers\Contract\Declined;
 use App\Http\Controllers\Contract\ParseUrl;
 use Closure;
 
@@ -29,12 +28,8 @@ class CheckQuote
 
     private function hasNotBeenDeclined($parsedRequest)
     {
-        $event = Event::where('id', $parsedRequest->get('client'))
-            ->select('book_client')
-            ->first();
+        new Declined($parsedRequest);
 
-        if ($event->book_client === 'td') {
-            throw new QuoteDeclined;
-        }
+        return;
     }
 }

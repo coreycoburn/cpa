@@ -248,7 +248,7 @@ export default {
       return `Signed ${this.type.charAt(0).toUpperCase() + this.type.substr(1)} Received`;
     },
     depositUrl() {
-        return `/contract/deposit?data=${this.data}`;
+        return `/contract/deposit?sign=${this.data}`;
     }
   },
   mounted() {

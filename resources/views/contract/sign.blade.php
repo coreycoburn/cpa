@@ -50,7 +50,7 @@
                         </p>
                         <a
                             class="justify-end bg-green hover:bg-green-dark text-white text-sm tracking-wide uppercase no-underline font-bold py-3 px-6 mx-6 rounded"
-                            href="deposit?data={{ $data->data }}"
+                            href="deposit?sign={{ $data->data }}"
                         >
                             Pay Deposit
                         </a>

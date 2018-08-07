@@ -24,6 +24,8 @@ class ParseUrl
 
         $merged_data = array_merge($url_data, $data);
         $this->data = $this->_cast($merged_data);
+
+        return $this->data;
     }
 
     public function get($items = NULL)
