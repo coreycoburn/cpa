@@ -3,7 +3,9 @@
 namespace App;
 
 use App\ContractTodo;
+use App\Payment;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 use Propaganistas\LaravelPhone\PhoneNumber;
 
 class Event extends Model
@@ -61,6 +63,16 @@ class Event extends Model
         return ($this->deposit_due / 100);
     }
 
+    public function getFormattedDepositDueDateAttribute()
+    {
+        return Carbon::parse($this->deposit_due_date)->format('l, F j, Y');
+    }
+
+    public function getDepositDueForHumansAttribute()
+    {
+        return Carbon::parse($this->deposit_due_date)->diffForHumans();
+    }
+
     public function userQuestion()
     {
         return $this->belongsTo(Employee::class, 'questions');
@@ -69,5 +81,10 @@ class Event extends Model
     public function todos()
     {
         return $this->hasMany(ContractTodo::class);
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
     }
 }

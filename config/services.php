@@ -41,6 +41,13 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'authorizenet' => [
+        'id' => env('AUTHORIZE_NET_API_LOGIN_ID'),
+        'transaction' => env('AUTHORIZE_NET_TRANSACTION_KEY'),
+        'key' => env('AUTHORIZE_NET_KEY'),
+        'acceptjs' => env('AUTHORIZE_NET_ACCEPT_JS'),
+    ],
+
     'google' => [
         'places' => [
             'uri' => env('GOOGLE_PLACES_URI'),

@@ -197,7 +197,7 @@ $factory->define(App\Event::class, function (Faker $faker) {
         'rate_type_amount' => 49,
         'cleaning_fee' => '',
         'deposit_due' => 88000,
-        'dep1_due_date' => '2018-09-13',
+        'deposit_due_date' => '2018-09-13',
         'dep1_amt_due' => 880,
         'manual_deposit' => '',
         'dep1_recv_date' => NULL,

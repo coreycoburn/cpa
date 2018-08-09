@@ -1,12 +1,23 @@
-@extends('layouts.app', ['title' => 'Deposit Due: $' . $event->deposit_due_in_dollars])
+@extends('layouts.app', ['title' => 'Make Deposit Payment'])
+
+@push('payments')
+<script
+    src="{{ config('services.authorizenet.acceptjs') }}"
+    charset="utf-8">
+</script>
+@endpush
 
 @section('body')
-    <div class="container mx-auto">
-        <p>Dear {{ $contract->social_title }} {{ $contract->last_name }},</p>
-        <p>Original Amt Due: $</p>
-        <p>
-            In order to keep our servcies secure for your {{ $contract->event_type }} on {{ $contract->formatted_event_date }}, please make a payment of ${{ $event->deposit_due_in_dollars }} i
-        </p>
-        {{ $event->deposit_due_in_dollars }}
+    <div class="container mx-auto text-xl max-w-xl mt-16">
+        <cpa-deposits
+            client-name="{{ $contract->social_title }} {{ $contract->last_name }}"
+            event-type="{{ $contract->event_type }}"
+            event-date="{{ $contract->formatted_event_date }}"
+            due-date="{{ $event->formatted_deposit_due_date }}"
+            due-date-humans="{{ $event->deposit_due_for_humans }}"
+            :original-due="{{ $event->deposit_due }}"
+            :payments="{{ $payments }}"
+        >
+        </cpa-deposits>
     </div>
 @endsection

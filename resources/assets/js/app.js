@@ -1,6 +1,7 @@
 import './bootstrap';
 import './components';
 import './forms';
+import store from './store.js';
 import Vue from 'vue';
 import Turbolinks from 'turbolinks';
 import VueCarousel from 'vue-carousel';
@@ -9,6 +10,7 @@ import PortalVue from 'portal-vue';
 import SweetModal from 'sweet-modal-vue/src/plugin';
 import VueFlashMessage from 'vue-flash-message';
 import Datetime from 'vue-datetime';
+import VueStash from 'vue-stash';
 import 'vue-datetime/dist/vue-datetime.css';
 import TurbolinksAdapter from 'vue-turbolinks';
 
@@ -29,6 +31,7 @@ Vue.use(VueFlashMessage, {
     },
 });
 Vue.use(Datetime);
+Vue.use(VueStash);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -39,5 +42,6 @@ Vue.use(Datetime);
 document.addEventListener('turbolinks:load', () => {
     const app = new Vue({
         el: '#app',
+        data: { store },
     });
 });

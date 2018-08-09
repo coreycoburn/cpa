@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display|Raleway">
         <script src="{{ mix('js/app.js') }}" defer></script>
         @stack('googlemaps')
+        @stack('payments')
         @stack('pdf')
         <title>{{ config('company.name', 'Laravel') }}</title>
     </head>

@@ -33,6 +33,7 @@
         "vue-carousel": "^0.8.1",
         "vue-flash-message": "^0.6.2",
         "vue-scrollto": "^2.11.0",
+        "vue-stash": "^2.0.1-beta",
         "vue-turbolinks": "^2.0.3",
         "weekstart": "^1.0.0"
     }

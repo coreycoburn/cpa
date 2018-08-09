@@ -210,7 +210,7 @@ class CreateClientsTable extends Migration
             $table->string('rate_type_amount', 10)->nullable()->default('48');
             $table->string('cleaning_fee', 10)->nullable();
             $table->integer('deposit_due')->nullable()->default(0);
-            $table->date('dep1_due_date')->nullable();
+            $table->date('deposit_due_date')->nullable();
             $table->string('dep1_amt_due', 10)->nullable();
             $table->string('manual_deposit', 10)->nullable();
             $table->date('dep1_recv_date')->nullable();
