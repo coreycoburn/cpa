@@ -1,10 +1,7 @@
 @extends('layouts.app', ['title' => 'Make Deposit Payment'])
 
 @push('payments')
-<script
-    src="{{ config('services.authorizenet.acceptjs') }}"
-    charset="utf-8">
-</script>
+<script src="https://js.stripe.com/v3/"></script>
 @endpush
 
 @section('body')
@@ -15,7 +12,8 @@
             event-date="{{ $contract->formatted_event_date }}"
             due-date="{{ $event->formatted_deposit_due_date }}"
             due-date-humans="{{ $event->deposit_due_for_humans }}"
-            :original-due="{{ $event->deposit_due }}"
+            :original-due="{{ $event->deposit_due_in_dollars }}"
+            :estimated-total="{{ $event->estimated_total_in_dollars }}"
             :payments="{{ $payments }}"
         >
         </cpa-deposits>

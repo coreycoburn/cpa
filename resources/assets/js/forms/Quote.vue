@@ -60,6 +60,7 @@
                             v-model="form.phone"
                             :errors="errors"
                             :required=true
+                            mask="phone"
                         />
                     </div>
                     <div class="w-1/5 mr-2">

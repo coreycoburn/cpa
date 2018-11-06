@@ -7,7 +7,14 @@
             @input=updateValue
             @keydown.enter.prevent=""
         >
-        {{ title }}
+        <div class="flex flex-col">
+            <div>
+                {{ title }}
+            </div>
+            <div class="text-xs">
+                {{ subTitle }}
+            </div>
+        </div>
     </label>
 </template>
 
@@ -24,9 +31,12 @@ export default {
             type: String,
             description: 'The title of the radio field'
         },
+        subTitle: {
+            type: String,
+            description: 'The sub title of the radio field'
+        },
         val: {
-            required: true,
-            type: String
+            required: true
         },
         check: {
             default: false,

@@ -1,17 +1,18 @@
 [type='radio'] {
-    @apply .appearance-none .relative .pin .h-6 .w-6 .bg-white .text-white .border-2 .border-grey-light .flex .mr-2;
+    @apply .appearance-none .relative .pin .h-4 .w-4 .bg-white .text-white .border-2 .border-grey-light .flex .mr-2;
     outline: none;
     transform: scale(1);
 }
 [type='radio']:checked:after {
-    @apply .opacity-100 .h-6 .w-6 .absolute .flex .text-2xl .-mt-2 .ml-1;
+    @apply .opacity-100 .h-4 .w-4 .absolute .flex .text-2xl .-mt-2 .ml-1;
 }
 [type='radio']:checked {
-    @apply .bg-brand-dark .border-4 .border-brand-lighter;
+    @apply .bg-brand-dark .border-2 .border-brand-lighter;
     transition: background-color 0.7s ease;
     transform: scale(1.2);
 }
 
-[type='radio'], [type='radio']:after {
+[type='radio'],
+[type='radio']:after {
     @apply .rounded-full;
 }

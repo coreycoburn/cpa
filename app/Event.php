@@ -63,6 +63,11 @@ class Event extends Model
         return ($this->deposit_due / 100);
     }
 
+    public function getEstimatedTotalInDollarsAttribute()
+    {
+        return ($this->estimated_total / 100);
+    }
+
     public function getFormattedDepositDueDateAttribute()
     {
         return Carbon::parse($this->deposit_due_date)->format('l, F j, Y');

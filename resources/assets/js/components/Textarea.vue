@@ -5,7 +5,7 @@
             :for="field"
         >
             {{ title }}
-            <span class="text-red" v-show="required">*</span>
+            <span class="text-red text-xs" v-show="required">*</span>
         </label>
         <textarea
             class="appearance-none rounded w-full py-2 px-3 text-grey-darker leading-tight h-32"

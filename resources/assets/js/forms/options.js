@@ -3,8 +3,8 @@ export const honorifics = [
     { data: 'Mrs.', title: 'Mrs.' },
     { data: 'Miss', title: 'Miss' },
     { data: 'Ms.', title: 'Ms.' },
-    { data: 'Dr.', title: 'Dr.' }
-]
+    { data: 'Dr.', title: 'Dr.' },
+];
 
 export const states = [
     { data: 'AL', title: 'Alabama' },
@@ -57,13 +57,28 @@ export const states = [
     { data: 'WA', title: 'Washington' },
     { data: 'WV', title: 'West Virginia' },
     { data: 'WI', title: 'Wisconsin' },
-    { data: 'WY', title: 'Wyoming' }
-]
+    { data: 'WY', title: 'Wyoming' },
+];
 
 export const contactMethod = [
     { data: 'Mr.', title: 'Mr.' },
     { data: 'Mrs.', title: 'Mrs.' },
     { data: 'Miss', title: 'Miss' },
     { data: 'Ms.', title: 'Ms.' },
-    { data: 'Dr.', title: 'Dr.' }
-]
+    { data: 'Dr.', title: 'Dr.' },
+];
+
+export const months = [
+    { data: 1, title: 'January' },
+    { data: 2, title: 'February' },
+    { data: 3, title: 'March' },
+    { data: 4, title: 'April' },
+    { data: 5, title: 'May' },
+    { data: 6, title: 'June' },
+    { data: 7, title: 'July' },
+    { data: 8, title: 'August' },
+    { data: 9, title: 'September' },
+    { data: 10, title: 'October' },
+    { data: 11, title: 'November' },
+    { data: 12, title: 'December' },
+];

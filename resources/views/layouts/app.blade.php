@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display|Raleway">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display|Roboto">
         <script src="{{ mix('js/app.js') }}" defer></script>
         @stack('googlemaps')
         @stack('payments')

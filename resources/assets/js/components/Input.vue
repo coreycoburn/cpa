@@ -5,19 +5,20 @@
             :for="field"
         >
             {{ title }}
-            <span class="text-red" v-show="required">*</span>
+            <span class="text-red text-xs" v-show="required">*</span>
         </label>
         <input
             class="appearance-none rounded w-full py-2 px-3 text-grey-darker leading-tight"
             :class="[formClass, { 'border border-red': errors[field] }]"
             :id="field"
             :name="field"
-            type="text"
+            :type="inputType"
             :placeholder="this.help ? this.help : this.title"
             @input="updateValue($event.target.value)"
             :value="value"
             @blur="removeError"
             @keydown.enter.prevent=""
+            v-mask="maskIt()"
         >
         <transition name="fade">
             <span
@@ -32,8 +33,17 @@
 </template>
 
 <script>
+import AwesomeMask from 'awesome-mask';
+
 export default {
+    directives: {
+        'mask': AwesomeMask
+    },
     props: {
+        inputType: {
+            type: String,
+            default: 'text'
+        },
         field: {
             required: true,
             type: String,
@@ -58,6 +68,9 @@ export default {
         },
         formClass: {
             type: String
+        },
+        mask: {
+            type: String
         }
     },
     methods: {
@@ -66,6 +79,25 @@ export default {
         },
         removeError() {
             this.errors[this.field] = ''
+        },
+        maskIt() {
+            if (this.mask === 'cc') {
+                return '9999 9999 9999 9999 999';
+            }
+
+            if (this.mask === 'cc-exp') {
+                return '99 / 99';
+            }
+
+            if (this.mask === 'cc-cvv') {
+                return '9999';
+            }
+
+            if (this.mask === 'phone') {
+                return '(999) 999-9999';
+            }
+
+            return '';
         }
     }
 }

@@ -11,11 +11,11 @@
             <h4 class="text-green mb-4">Payments Received: {{ inDollars(paymentsSum) }}</h4>
             <ul class="list-reset">
               <li
-                v-for="{ id, amount, formatted_payment_created } in payments"
+                v-for="{ id, payment_made_in_dollars, formatted_payment_created } in payments"
                 :key="id"
                 class="text-md"
               >
-                <span class="font-bold">{{ inDollars(amount) }}</span> on {{ formatted_payment_created }}
+                <span class="font-bold">{{ inDollars(payment_made_in_dollars) }}</span> on {{ formatted_payment_created }}
               </li>
             </ul>
           </div>
@@ -28,7 +28,7 @@
         </div>
         <button
           class="justify-end bg-green hover:bg-green-dark text-white text-sm tracking-wide uppercase font-bold py-3 px-6 mb-8 rounded"
-          @click="$refs.modalPay.open()"
+          @click="depositModalOpen"
         >
           Make a Payment
         </button>
@@ -37,139 +37,106 @@
 
     <sweet-modal
       ref="modalPay"
-      title="Make a Deposit Payment"
+      :title="modalTitle"
       blocking
       overlay-theme="dark"
       hide-close-button
     >
-      <div class="text-left normal-case">
-        Please choose the amount that you would like to pay at this time.
-      </div>
-      <form action="/charge" method="post" id="payment-form">
-        <app-input
-          field="card_number"
-          title="Card Number"
-          v-model="form.card_number"
-          :errors="errors"
-          :required=true
-        />
-      </form>
-      <div class="text-right pt-6 mt-6 border-t border-grey-lighter">
-        <button
-          class="bg-transparent border border-orange text-orange hover:bg-orange hover:border-none hover:text-white text-xs tracking-wide uppercase font-bold py-2 px-4 mr-3 rounded sm:text-sm sm:py-3 sm:px-6"
-          :class="{ 'cursor-not-allowed': processing }"
-          :disabled="processing"
-          @click="cancel"
-        >
-          Cancel
-        </button>
-        <button
-          class="bg-green hover:bg-green-dark text-white text-sm tracking-wide uppercase font-bold py-3 px-6 mr-3 rounded"
-          @click="submit"
-          >
-          Submit Payment
-        </button>
-      </div>
+      <pay-deposit
+        :current-due="currentDue"
+        :estimated-total-due="estimatedTotalDue"
+      />
     </sweet-modal>
   </div>
 </template>
 
 <script>
-  import AppInput from '../Input';
+import PayDeposit from "./modal/PayDeposit";
+import AppRadio from "../Radio";
 
-  export default {
-    store: {
-      currentlyDue: 'deposits.currentlyDue'
+export default {
+  store: {
+    currentlyDue: "deposits.currentlyDue",
+    depositPayment: "deposits.payment",
+    modalOpen: "modals.open"
+  },
+  components: {
+    PayDeposit,
+    AppRadio
+  },
+  props: {
+    clientName: {
+      required: true,
+      type: String
     },
-    components: {
-      AppInput
+    eventType: {
+      required: true,
+      type: String
     },
-    props: {
-      clientName: {
-        required: true,
-        type: String
-      },
-      eventType: {
-        required: true,
-        type: String
-      },
-      eventDate: {
-        required: true,
-        type: String
-      },
-      dueDate: {
-        required: true,
-        type: String
-      },
-      dueDateHumans: {
-        required: true,
-        type: String
-      },
-      originalDue: {
-        required: true,
-        type: Number
-      },
-      payments: {
-        type: Array
-      }
+    eventDate: {
+      required: true,
+      type: String
     },
-    data() {
-      return {
-        form: {
-          'card_number'
-        },
-        errors: [],
-        processing: false,
-      }
+    dueDate: {
+      required: true,
+      type: String
     },
-    mounted() {
+    dueDateHumans: {
+      required: true,
+      type: String
+    },
+    originalDue: {
+      required: true,
+      type: Number
+    },
+    estimatedTotal: {
+      required: true,
+      type: Number
+    },
+    payments: {
+      type: Array
+    }
+  },
+  mounted() {
+    //this.$refs.modalPay.open();
+  },
+  computed: {
+    modalTitle() {
+      return `Make a Deposit Payment of <span class="text-green text-3xl">${this.inDollars(
+        this.depositPayment
+      )}</span>`;
+    },
+    paymentsSum() {
+      return this.payments.reduce(
+        (accum, payment) => accum + payment.payment_made_in_dollars,
+        0
+      );
+    },
+    estimatedTotalDue() {
+      return this.estimatedTotal - this.paymentsSum;
+    },
+    currentDue() {
+      return this.originalDue - this.paymentsSum;
+    }
+  },
+  methods: {
+    inDollars(amount) {
+      return Number(amount).toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD"
+      });
+    },
+    depositModalOpen() {
       this.$refs.modalPay.open();
-
-    },
-    computed: {
-      paymentsSum() {
-        return this.payments.reduce((accum, obj) => accum + obj.amount, 0);
-      },
-      currentDue() {
-        return this.originalDue - this.paymentsSum;
-      }
-    },
-    methods: {
-      inDollars($amount)
-      {
-        return ($amount / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-      },
-      submit() {
-        console.log('submitting...');
-      },
-      cancel() {
-        this.$refs.modalPay.close()
+      this.modalOpen = true;
+    }
+  },
+  watch: {
+    modalOpen() {
+      if (this.modalOpen === false) {
+        this.$refs.modalPay.close();
       }
     }
   }
+};
 </script>
-
-<style scoped>
-  .StripeElement {
-  background-color: white;
-  height: 40px;
-  padding: 10px 12px;
-  border-radius: 4px;
-  border: 1px solid transparent;
-  box-shadow: 0 1px 3px 0 #e6ebf1;
-  -webkit-transition: box-shadow 150ms ease;
-  transition: box-shadow 150ms ease;
-}
-
-.StripeElement--focus {
-  box-shadow: 0 1px 3px 0 #cfd7df;
-}
-
-.StripeElement--invalid {
-  border-color: #fa755a;
-}
-
-.StripeElement--webkit-autofill {
-  background-color: #fefde5 !important;
-}
-</style>

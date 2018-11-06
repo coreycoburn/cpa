@@ -31,7 +31,7 @@ class PaymentsTest extends TestCase
         $event->payments()->create(['amount' => 2000]);
         $payment = $event->payments()->first();
 
-        $this->assertEquals('20.00', $payment->payment_made_in_dollars);
+        $this->assertEquals('20.00', $payment->payment_made_in_dollars_formatted);
     }
 
     /** @test */

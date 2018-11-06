@@ -5,14 +5,14 @@
             :for="field"
         >
             {{ title }}
-            <span class="text-red" v-show="required">*</span>
+            <span class="text-red text-xs" v-show="required">*</span>
         </label>
         <select
             :id="field"
             :name="field"
             v-model="selected"
             class="appearance-none bg-white rounded w-full py-2 px-3 text-grey-darker leading-tight"
-            :class="{ 'border border-red': errors[field] }"
+            :class="[formClass, { 'border border-red': errors[field] }]"
             @change="updateValue($event.target.value)"
             @blur="removeError"
             @keydown.enter.prevent=""
@@ -59,6 +59,9 @@ export default {
         },
         required: {
             default: false
+        },
+        formClass: {
+            type: String
         }
     },
     computed: {

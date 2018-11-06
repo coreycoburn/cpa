@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Third Party Services
@@ -36,7 +35,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => App\User::class,
+        'version' => '2018-07-27',
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
