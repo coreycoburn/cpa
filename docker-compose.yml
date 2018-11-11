@@ -1,0 +1,73 @@
+version: "3"
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+  app:
+    image: marketing-www
+    container_name: marketing-www
+    external_links:
+      - leap-mysql
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    depends_on:
+      - redis
+    env_file:
+      - .docker.env
+    volumes:
+      - .:/var/www/html
+    networks:
+      - app-tier
+    ports:
+      - 8080:80
+    environment:
+      APP_ENV: local
+      CONTAINER_ROLE: app
+
+  scheduler:
+    image: marketing-www
+    container_name: marketing-scheduler
+    depends_on:
+      - app
+      - redis
+    env_file:
+      - .docker.env
+    volumes:
+      - .:/var/www/html
+    networks:
+      - app-tier
+    environment:
+      CONTAINER_ROLE: scheduler
+      APP_ENV: local
+
+  queue:
+    image: marketing-www
+    container_name: marketing-queue
+    depends_on:
+      - app
+      - redis
+    env_file:
+      - .docker.env
+    volumes:
+      - .:/var/www/html
+    networks:
+      - app-tier
+    environment:
+      CONTAINER_ROLE: queue
+      APP_ENV: local
+
+  redis:
+    container_name: marketing-redis
+    image: redis:4-alpine
+    networks:
+      - app-tier
+    ports:
+      - 16379:6379
+    volumes:
+      - redis:/data
+
+volumes:
+  redis:
+    driver: "local"

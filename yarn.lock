@@ -8004,6 +8004,11 @@ vue-carousel@^0.8.1:
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/vue-carousel/-/vue-carousel-0.8.1.tgz#1bcd1ab3b11b117498c7bdc5221caf96dcd24ec2"
 
+vue-datetime@^1.0.0-beta.8:
+  version "1.0.0-beta.8"
+  resolved "https://registry.yarnpkg.com/vue-datetime/-/vue-datetime-1.0.0-beta.8.tgz#0bd0e637aaa23d7b3428872c5ff40cce997fa273"
+  integrity sha512-Xk2/DRDaFs+UJ2R9hKkexuNAlVOCKSVqQ7PKGhB4i1SONnOKOSUc0ajD3hRWIPllqjlDfmIIsSnm53xnl+JdaQ==
+
 vue-flash-message@^0.6.2:
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/vue-flash-message/-/vue-flash-message-0.6.2.tgz#0b690463bceb8140837e5deefd1381435ca2111a"
