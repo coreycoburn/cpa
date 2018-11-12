@@ -2,13 +2,16 @@ version: "3"
 networks:
   app-tier:
     driver: bridge
+  shared:
+    external:
+      name: leap_shared
 
 services:
   app:
     image: marketing-www
     container_name: marketing-www
     external_links:
-      - leap-mysql
+      - leap-mysql:leap-mysql
     build:
       context: .
       dockerfile: docker/Dockerfile
@@ -20,6 +23,7 @@ services:
       - .:/var/www/html
     networks:
       - app-tier
+      - shared
     ports:
       - 8080:80
     environment:

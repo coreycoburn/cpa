@@ -2,8 +2,6 @@
 
 namespace App;
 
-use App\ContractTodo;
-use App\Payment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Propaganistas\LaravelPhone\PhoneNumber;
@@ -55,7 +53,7 @@ class Event extends Model
 
     public function getPhoneAttribute()
     {
-        return PhoneNumber::make($value, 'US')->formatForCountry('US');
+        return PhoneNumber::make($this->phone, 'US')->formatForCountry('US');
     }
 
     public function getDepositDueInDollarsAttribute()
