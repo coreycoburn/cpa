@@ -25,7 +25,7 @@ services:
       - app-tier
       - shared
     ports:
-      - 8080:80
+      - 8081:81
     environment:
       APP_ENV: local
       CONTAINER_ROLE: app
@@ -68,7 +68,7 @@ services:
     networks:
       - app-tier
     ports:
-      - 16379:6379
+      - 16380:6380
     volumes:
       - redis:/data
 

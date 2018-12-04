@@ -5,9 +5,6 @@ namespace App\Http\Controllers\Contract;
 use App\ContractTodo;
 use App\Employee;
 use App\Event;
-use App\Http\Controllers\Contract\ContractData;
-use App\Http\Controllers\Contract\ContractType;
-use App\Http\Controllers\Contract\Recipient;
 use App\Http\Controllers\Contract\Sign\BookIt;
 use App\Http\Controllers\Contract\Sign\UploadSignature;
 use App\Http\Controllers\Controller;
@@ -20,7 +17,6 @@ use App\Mail\SignedContract;
 use App\Notifications\DeclinedContractMessage;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\URL;
 
 class ContractController extends Controller
 {
@@ -44,7 +40,7 @@ class ContractController extends Controller
         $upload->storage($validated->signature);
 
         Mail::to($validated->email)
-            ->bcc(['soraya@cpavalet.com', 'events@cpavalet.com', 'events2@cpavalet.com'])
+            ->bcc(['soraya@cpavalet.com', 'regionalmgr@cpavalet.com', 'events2@cpavalet.com'])
             ->queue(new SignedContract([$booked->contract(), $request->input(), $recipient->get()]));
     }
 

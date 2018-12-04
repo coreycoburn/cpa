@@ -12,7 +12,7 @@ RUN apt-get update \
     supervisor \
     sqlite3 \
     nginx \
-    && docker-php-ext-install mbstring pdo_mysql opcache calendar \
+    && docker-php-ext-install pdo_mysql opcache calendar \
     && pecl install apcu xdebug-2.6.0alpha1 \
     && docker-php-ext-enable apcu xdebug
 
@@ -45,6 +45,6 @@ COPY . /var/www/html
 
 RUN chown -R www-data:www-data /var/www/html
 
-EXPOSE 80
+EXPOSE 81
 
 CMD ["/usr/local/bin/run-app"]

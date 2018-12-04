@@ -1,6 +1,6 @@
 server {
-    listen [::]:80;
-    listen 80;
+    listen [::]:81;
+    listen 81;
 
     root /var/www/html/public;
 
@@ -30,6 +30,5 @@ server {
         deny all;
     }
 
-    add_header X-Served-By Bitpress.io;
     include h5bp/basic.conf;
 }
