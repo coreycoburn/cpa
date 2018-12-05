@@ -13,10 +13,7 @@ Route::get('/contract/sign', 'Contract\ContractController@index')
     ->name('sign-contract')
     ->middleware('quote');
 
-// Route::post('/contract/sign', 'Contract\ContractController@sign');
-Route::post('/contract/sign', function () {
-    dump(2);
-});
+Route::post('/contract/sign', 'Contract\ContractController@sign');
 Route::post('/contract/revise', 'Contract\ContractController@revise');
 Route::post('/contract/decline', 'Contract\ContractController@decline');
 
