@@ -12,7 +12,7 @@ RUN apt-get update \
     supervisor \
     sqlite3 \
     nginx \
-    && docker-php-ext-install pdo_mysql opcache calendar \
+    && docker-php-ext-install pdo_mysql bcmath opcache calendar \
     && pecl install apcu xdebug-2.6.0alpha1 \
     && docker-php-ext-enable apcu xdebug
 
