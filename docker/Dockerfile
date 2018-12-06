@@ -45,6 +45,6 @@ COPY . /var/www/html
 
 RUN chown -R www-data:www-data /var/www/html
 
-EXPOSE 81
+EXPOSE 80
 
 CMD ["/usr/local/bin/run-app"]

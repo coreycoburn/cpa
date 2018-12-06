@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Social\Instagram;
 use App\Website;
+use App\Social\Instagram;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class MarketingController extends Controller
 {
     public function welcome()
     {
-        $instagram = (new Instagram('instagram'))
-            ->getInstagram();
+        // $instagram = (new Instagram('instagram'))
+        //     ->getInstagram();
 
+        $instagram = [];
         return view('welcome', compact('instagram'));
     }
 

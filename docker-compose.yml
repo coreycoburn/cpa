@@ -1,6 +1,6 @@
 version: "3"
 networks:
-  app-tier:
+  marketing-tier:
     driver: bridge
   shared:
     external:
@@ -22,10 +22,10 @@ services:
     volumes:
       - .:/var/www/html
     networks:
-      - app-tier
+      - marketing-tier
       - shared
     ports:
-      - 8081:81
+      - 8080:80
       - 9912:9912
     environment:
       APP_ENV: local
@@ -42,7 +42,7 @@ services:
     volumes:
       - .:/var/www/html
     networks:
-      - app-tier
+      - marketing-tier
     environment:
       CONTAINER_ROLE: scheduler
       APP_ENV: local
@@ -58,7 +58,7 @@ services:
     volumes:
       - .:/var/www/html
     networks:
-      - app-tier
+      - marketing-tier
     environment:
       CONTAINER_ROLE: queue
       APP_ENV: local
@@ -67,9 +67,9 @@ services:
     container_name: marketing-redis
     image: redis:4-alpine
     networks:
-      - app-tier
+      - marketing-tier
     ports:
-      - 16380:6380
+      - 16379:6379
     volumes:
       - redis:/data
 
